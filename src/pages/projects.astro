@@ -3,49 +3,49 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import HorizontalCard from "../components/HorizontalCard.astro";
 ---
 
-<BaseLayout title = "Projects" sideBarActiveItemID="projects">
+<BaseLayout title="Research" sideBarActiveItemID="projects">
   <div>
-    <div class="text-3xl w-full font-bold mb-5">Projects Header</div>
+    <div class="text-3xl w-full font-bold mb-5">Open-Source Projects</div>
   </div>
 
   <HorizontalCard
-    title="Demo Project 1"
+    title="QuantML – Python Toolkit for Financial ML"
     img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
+    desc="A modular Python library implementing walk-forward cross-validation, purged k-fold, feature importance for financial time series and combinatorial backtesting."
+    url="https://github.com"
     badge="NEW"
   />
   <div class="divider my-0"></div>
   <HorizontalCard
-    title="Demo Project 2"
+    title="PortfolioRL – Reinforcement Learning for Asset Allocation"
     img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
+    desc="Implementation of Soft Actor-Critic and PPO agents for continuous portfolio rebalancing in simulated and live market environments."
+    url="https://github.com"
   />
 
   <div>
-    <div class="text-3xl w-full font-bold mb-5 mt-10">Projects Header</div>
+    <div class="text-3xl w-full font-bold mb-5 mt-10">Research Papers & Notebooks</div>
   </div>
 
   <HorizontalCard
-    title="Demo Project 3"
+    title="Temporal Fusion Transformers for Equity Return Prediction"
     img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+    desc="An empirical study applying TFT to cross-sectional equity return forecasting using fundamental, technical and sentiment features."
     url="#"
-    badge="FOSS"
+    badge="PAPER"
   />
   <div class="divider my-0"></div>
   <HorizontalCard
-    title="Demo Project 4"
+    title="Hierarchical Risk Parity with ML-Based Correlation Shrinkage"
     img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+    desc="Combining HRP portfolio construction with machine learning estimates of the covariance matrix to reduce estimation error in multi-asset portfolios."
     url="#"
   />
   <div class="divider my-0"></div>
   <HorizontalCard
-    title="Demo Project 5"
+    title="Regime Detection via Hidden Markov Models: A Practical Guide"
     img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+    desc="Step-by-step Jupyter notebook implementing Gaussian HMMs on macro and market data to identify bull/bear/crisis regimes and adapt strategy parameters."
     url="#"
   />
 </BaseLayout>

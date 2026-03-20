@@ -1,57 +1,127 @@
 ---
-title: "Demo Post 3"
-description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-pubDate: "Sep 12 2022"
+title: "Credit Risk Modelling with Gradient Boosting: From PD to IFRS 9"
+description: "A step-by-step guide to building a Probability of Default model using LightGBM, calibrating it for IFRS 9 expected credit loss computation, and validating it with proper time-based cross-validation."
+pubDate: "Mar 18 2026"
 heroImage: "/post_img.webp"
-badge: "Demo badge"
-tags: ["rust","tokio"]
+badge: "RISK"
+tags: ["credit-risk", "machine-learning", "IFRS9"]
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-incididunt ut labore et dolore magna aliqua. Vitae ultricies leo integer
-malesuada nunc vel risus commodo viverra. Adipiscing enim eu turpis egestas
-pretium. Euismod elementum nisi quis eleifend quam adipiscing. In hac habitasse
-platea dictumst vestibulum. Sagittis purus sit amet volutpat. Netus et malesuada
-fames ac turpis egestas. Eget magna fermentum iaculis eu non diam phasellus
-vestibulum lorem. Varius sit amet mattis vulputate enim. Habitasse platea
-dictumst quisque sagittis. Integer quis auctor elit sed vulputate mi. Dictumst
-quisque sagittis purus sit amet.
+## Why Credit Risk Modelling is a Perfect ML Problem
 
-Morbi tristique senectus et netus. Id semper risus in hendrerit gravida rutrum
-quisque non tellus. Habitasse platea dictumst quisque sagittis purus sit amet.
-Tellus molestie nunc non blandit massa. Cursus vitae congue mauris rhoncus.
-Accumsan tortor posuere ac ut. Fringilla urna porttitor rhoncus dolor. Elit
-ullamcorper dignissim cras tincidunt lobortis. In cursus turpis massa tincidunt
-dui ut ornare lectus. Integer feugiat scelerisque varius morbi enim nunc.
-Bibendum neque egestas congue quisque egestas diam. Cras ornare arcu dui vivamus
-arcu felis bibendum. Dignissim suspendisse in est ante in nibh mauris. Sed
-tempus urna et pharetra pharetra massa massa ultricies mi.
+Credit scoring has clear binary labels (default / no default), large datasets, and a direct economic objective. Gradient boosting methods — particularly **LightGBM** and **XGBoost** — consistently outperform logistic regression on consumer and corporate credit tasks.
 
-Mollis nunc sed id semper risus in. Convallis a cras semper auctor neque. Diam
-sit amet nisl suscipit. Lacus viverra vitae congue eu consequat ac felis donec.
-Egestas integer eget aliquet nibh praesent tristique magna sit amet. Eget magna
-fermentum iaculis eu non diam. In vitae turpis massa sed elementum. Tristique et
-egestas quis ipsum suspendisse ultrices. Eget lorem dolor sed viverra ipsum. Vel
-turpis nunc eget lorem dolor sed viverra. Posuere ac ut consequat semper viverra
-nam. Laoreet suspendisse interdum consectetur libero id faucibus. Diam phasellus
-vestibulum lorem sed risus ultricies tristique. Rhoncus dolor purus non enim
-praesent elementum facilisis. Ultrices tincidunt arcu non sodales neque. Tempus
-egestas sed sed risus pretium quam vulputate. Viverra suspendisse potenti nullam
-ac tortor vitae purus faucibus ornare. Fringilla urna porttitor rhoncus dolor
-purus non. Amet dictum sit amet justo donec enim.
+But deploying a model in a regulated context (Basel III, IFRS 9) introduces constraints: the model must be **interpretable**, **well-calibrated**, and validated on out-of-sample data with a proper time split.
 
-Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Tortor posuere ac ut
-consequat semper viverra. Tellus mauris a diam maecenas sed enim ut sem viverra.
-Venenatis urna cursus eget nunc scelerisque viverra mauris in. Arcu ac tortor
-dignissim convallis aenean et tortor at. Curabitur gravida arcu ac tortor
-dignissim convallis aenean et tortor. Egestas tellus rutrum tellus pellentesque
-eu. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. Ut enim
-blandit volutpat maecenas volutpat blandit aliquam etiam. Id donec ultrices
-tincidunt arcu. Id cursus metus aliquam eleifend mi.
+---
 
-Tempus quam pellentesque nec nam aliquam sem. Risus at ultrices mi tempus
-imperdiet. Id porta nibh venenatis cras sed felis eget velit. Ipsum a arcu
-cursus vitae. Facilisis magna etiam tempor orci eu lobortis elementum. Tincidunt
-dui ut ornare lectus sit. Quisque non tellus orci ac. Blandit libero volutpat
-sed cras. Nec tincidunt praesent semper feugiat nibh sed pulvinar proin gravida.
-Egestas integer eget aliquet nibh praesent tristique magna.
+## Data Preparation
+
+The key challenge is avoiding **label leakage**: features must only use information available at origination time, not at observation time.
+
+```python
+import lightgbm as lgb
+import pandas as pd
+from sklearn.model_selection import TimeSeriesSplit
+from sklearn.calibration import CalibratedClassifierCV
+from sklearn.metrics import roc_auc_score, brier_score_loss
+
+# Features at origination date
+features = [
+    "ltv_ratio", "dti_ratio", "credit_score", "loan_term",
+    "employment_years", "annual_income_log", "interest_rate",
+    "property_type_enc", "macro_gdp_growth", "macro_unemployment"
+]
+
+X = df[features]
+y = df["default_12m"]  # 1 if defaulted within 12 months
+```
+
+## Training with Time-Based Cross-Validation
+
+Never use random k-fold for credit data — a loan issued in 2023 cannot be used to predict a loan from 2022.
+
+```python
+tscv = TimeSeriesSplit(n_splits=5)
+aucs = []
+
+for fold, (train_idx, val_idx) in enumerate(tscv.split(X)):
+    X_train, X_val = X.iloc[train_idx], X.iloc[val_idx]
+    y_train, y_val = y.iloc[train_idx], y.iloc[val_idx]
+
+    model = lgb.LGBMClassifier(
+        n_estimators=500,
+        learning_rate=0.05,
+        num_leaves=31,
+        class_weight="balanced",
+        random_state=42,
+    )
+    model.fit(
+        X_train, y_train,
+        eval_set=[(X_val, y_val)],
+        callbacks=[lgb.early_stopping(50, verbose=False)],
+    )
+    preds = model.predict_proba(X_val)[:, 1]
+    auc = roc_auc_score(y_val, preds)
+    aucs.append(auc)
+    print(f"Fold {fold+1} AUC: {auc:.4f}")
+
+print(f"Mean AUC: {np.mean(aucs):.4f} ± {np.std(aucs):.4f}")
+```
+
+## Calibration for IFRS 9
+
+IFRS 9 requires a **point-in-time Probability of Default (PD)** that reflects current economic conditions. Raw LightGBM scores are well-ranked but not well-calibrated probabilities. We use isotonic regression to fix this:
+
+```python
+calibrated = CalibratedClassifierCV(model, method="isotonic", cv="prefit")
+calibrated.fit(X_val, y_val)
+
+pd_estimates = calibrated.predict_proba(X_test)[:, 1]
+brier = brier_score_loss(y_test, pd_estimates)
+print(f"Brier Score: {brier:.4f}")  # lower is better
+```
+
+## Expected Credit Loss Computation
+
+Under IFRS 9, ECL is computed as:
+
+```
+ECL = PD × LGD × EAD
+```
+
+Where:
+- **PD**: Probability of Default (our model output)
+- **LGD**: Loss Given Default (typically 40–60% for unsecured retail)
+- **EAD**: Exposure at Default (outstanding balance at default time)
+
+```python
+df["pd"] = pd_estimates
+df["lgd"] = 0.45  # simplified flat LGD
+df["ead"] = df["outstanding_balance"]
+df["ecl"] = df["pd"] * df["lgd"] * df["ead"]
+
+print(f"Total ECL provision: €{df['ecl'].sum():,.0f}")
+```
+
+## Model Interpretability with SHAP
+
+Regulators require understanding of model decisions. SHAP values provide additive feature attributions consistent with model predictions:
+
+```python
+import shap
+
+explainer = shap.TreeExplainer(model)
+shap_values = explainer.shap_values(X_test)
+
+shap.summary_plot(shap_values[1], X_test, plot_type="bar")
+```
+
+The most important features in our experiment were `credit_score`, `dti_ratio`, and `macro_unemployment` — consistent with economic intuition and making the model defensible to auditors.
+
+## Key Takeaways
+
+1. **Time-based splits are mandatory** — random splits inflate AUC by 3–5 points.
+2. **Calibrate your probabilities** — uncalibrated scores lead to under/over-provisioning.
+3. **SHAP for every model** — regulators and risk committees expect to understand driver variables.
+4. **Monitor for drift** — retrain quarterly and track PSI (Population Stability Index) on input distributions.

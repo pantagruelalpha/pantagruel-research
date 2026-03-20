@@ -3,16 +3,17 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import TimeLineElement from "../components/cv/TimeLine.astro";
 ---
 
-<BaseLayout title="Resume" sideBarActiveItemID="cv">
+<BaseLayout title="About" sideBarActiveItemID="cv">
   <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Profile</div>
+    <div class="text-3xl w-full font-bold">About</div>
   </div>
 
   <div class="mb-10 text-justify">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-    aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-    aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-    cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    Quantitative researcher and machine learning practitioner with a focus on financial markets.
+    I write about the practical application of statistical models, deep learning architectures
+    and optimisation techniques to problems in asset management, risk and algorithmic trading.
+    My work sits at the intersection of rigorous mathematical finance and modern data science,
+    with an emphasis on reproducibility and production-ready implementations in Python.
   </div>
 
   <div class="mb-5">
@@ -21,12 +22,12 @@ import TimeLineElement from "../components/cv/TimeLine.astro";
 
   <div class="time-line-container grid gap-4 mb-10">
     <TimeLineElement
-      title="Title Name"
-      subtitle="[start year] to [end year] at [Study Center Name], [City], [Country]"
+      title="MSc Financial Engineering"
+      subtitle="2016 to 2018 at Universidad Politécnica de Madrid, Madrid, Spain"
     />
     <TimeLineElement
-      title="Title Name"
-      subtitle="[start year] to [end year] at [Study Center Name], [City], [Country]"
+      title="BSc Mathematics & Statistics"
+      subtitle="2012 to 2016 at Universidad Autónoma de Madrid, Madrid, Spain"
     />
   </div>
 
@@ -36,22 +37,25 @@ import TimeLineElement from "../components/cv/TimeLine.astro";
 
   <div class="time-line-container mb-10">
     <TimeLineElement
-      title="Job Title at Project or Company Name"
-      subtitle="From [Start Date] to [End Date] at [Company], [City], [Country]"
+      title="Senior Quantitative Researcher"
+      subtitle="From 2022 to Present at Pantagruel Capital, Madrid, Spain"
     >
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
+      Leading quantitative research initiatives in systematic equity strategies. Development of machine learning models for alpha generation,
+      portfolio construction and execution cost modelling. Research on alternative data integration and NLP pipelines for earnings call analysis.
     </TimeLineElement>
     <TimeLineElement
-      title="Job Title at Project or Company Name"
-      subtitle="From [Start Date] to [End Date] at [Company], [City], [Country]"
+      title="Quantitative Analyst"
+      subtitle="From 2019 to 2022 at Algorithmia AM, London, UK"
     >
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
+      Built and maintained factor models and risk engines for a multi-asset portfolio. Implemented deep learning forecasting models
+      for volatility and cross-sectional return prediction. Backtesting infrastructure development in Python and C++.
     </TimeLineElement>
     <TimeLineElement
-      title="Job Title at Project or Company Name"
-      subtitle="From [Start Date] to [End Date] at [Company], [City], [Country]"
+      title="Data Scientist – Financial Markets"
+      subtitle="From 2018 to 2019 at BBVA Data & Analytics, Madrid, Spain"
     >
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
+      Developed credit risk scoring models using gradient boosting and logistic regression. Analysis of transactional data
+      for retail banking clients and regulatory reporting (IFRS 9 / Basel III).
     </TimeLineElement>
   </div>
 
@@ -61,10 +65,13 @@ import TimeLineElement from "../components/cv/TimeLine.astro";
 
   <ul class="list-disc mx-6 mb-10 grid gap-2">
     <li>
-      <a href="#" target="_blank"> Certification Name (with link)</a>
+      <a href="https://www.cfainstitute.org/" target="_blank">CFA Level II Candidate – CFA Institute</a>
     </li>
     <li>
-      <a href="#" target="_blank"> Certification Name (with link)</a>
+      <a href="https://www.tensorflow.org/certificate" target="_blank">TensorFlow Developer Certificate – Google</a>
+    </li>
+    <li>
+      <a href="https://aws.amazon.com/certification/" target="_blank">AWS Certified Machine Learning – Specialty</a>
     </li>
   </ul>
 
@@ -73,20 +80,20 @@ import TimeLineElement from "../components/cv/TimeLine.astro";
   </div>
 
   <ul class="list-disc md:columns-5 columns-2 mx-6">
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
+    <li>Python</li>
+    <li>PyTorch</li>
+    <li>TensorFlow</li>
+    <li>scikit-learn</li>
+    <li>Pandas / NumPy</li>
+    <li>SQL</li>
+    <li>R</li>
+    <li>C++</li>
+    <li>Time Series</li>
+    <li>Portfolio Opt.</li>
+    <li>Risk Modelling</li>
+    <li>NLP</li>
+    <li>Reinforcement RL</li>
+    <li>Factor Models</li>
+    <li>Docker / MLOps</li>
   </ul>
 </BaseLayout>

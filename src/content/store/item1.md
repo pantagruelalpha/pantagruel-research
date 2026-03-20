@@ -1,15 +1,24 @@
 ---
-title: "Demo Item 1"
-description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-custom_link_label: "Live Preview"
-custom_link: "https://demourl.com/"
-updatedDate: "Sep 15 2022"
-pricing: "$15"
-badge: "Featured"
-checkoutUrl: "https://checkouturl.com/"
+title: "Advances in Financial Machine Learning – de Prado"
+description: "The essential reference for applying ML to financial data correctly. Covers feature engineering, cross-validation, labelling, bet sizing and backtesting with the rigour the industry demands."
+custom_link_label: "View on Amazon"
+custom_link: "https://www.amazon.com/dp/1119482089"
+updatedDate: "Jan 2018"
+pricing: "Essential"
+badge: "Must Read"
 heroImage: "/itemPreview.webp"
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae ultricies leo integer malesuada nunc vel risus commodo viverra. Adipiscing enim eu turpis egestas pretium. Euismod elementum nisi quis eleifend quam adipiscing. In hac habitasse platea dictumst vestibulum. Sagittis purus sit amet volutpat. Netus et malesuada fames ac turpis egestas. Eget magna fermentum iaculis eu non diam phasellus vestibulum lorem. Varius sit amet mattis vulputate enim. Habitasse platea dictumst quisque sagittis. Integer quis auctor elit sed vulputate mi. Dictumst quisque sagittis purus sit amet.
+Marcos López de Prado's *Advances in Financial Machine Learning* is arguably the most important book written at the intersection of ML and quantitative finance. Unlike most finance textbooks, it is ruthlessly practical and addresses the specific ways in which naive ML applications fail in financial markets.
 
-Morbi tristique senectus et netus. Id semper risus in hendrerit gravida rutrum quisque non tellus. Habitasse platea dictumst quisque sagittis purus sit amet. Tellus molestie nunc non blandit massa. Cursus vitae congue mauris rhoncus. Accumsan tortor posuere ac ut. Fringilla urna porttitor rhoncus dolor. Elit ullamcorper dignissim cras tincidunt lobortis. In cursus turpis massa tincidunt dui ut ornare lectus. Integer feugiat scelerisque varius morbi enim nunc. Bibendum neque egestas congue quisque egestas diam. Cras ornare arcu dui vivamus arcu felis bibendum. Dignissim suspendisse in est ante in nibh mauris. Sed tempus urna et pharetra pharetra massa massa ultricies mi.
+## What You'll Learn
+
+- **Structural breaks and fractional differentiation**: how to make financial series stationary without destroying memory — a problem that textbook methods ignore.
+- **Labelling with the Triple Barrier Method**: a sophisticated way to label financial observations that accounts for profit targets, stop losses, and time expiry simultaneously.
+- **Purged Cross-Validation**: the correct way to split financial data to avoid leakage due to serial correlation in labels.
+- **Feature Importance with MDI and MDA**: mean decrease impurity and mean decrease accuracy applied to financial features, and why they matter more than model architecture.
+- **Bet Sizing**: how to translate a model's probability output into actual position sizes using the Kelly criterion.
+
+## Who Is It For?
+
+Practitioners who are already comfortable with Python and basic ML concepts but want to apply them rigorously to financial data. Required reading before building any live trading strategy.

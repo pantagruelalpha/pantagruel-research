@@ -1,15 +1,23 @@
 ---
-title: "Demo Item 3"
-description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-custom_link_label: "Custom Btn"
-custom_link: "https://customurl.com/"
-updatedDate: "Sep 11 2022"
-pricing: "$10"
-oldPricing: "$25.5"
-checkoutUrl: "https://checkouturl.com/"
+title: "Quantitative Risk Management – McNeil, Frey & Embrechts"
+description: "The definitive academic and practitioner reference on risk measurement: VaR, Expected Shortfall, copulas, extreme value theory, credit risk and market risk under Basel frameworks."
+custom_link_label: "View on Princeton Press"
+custom_link: "https://press.princeton.edu/books/hardcover/9780691166278/quantitative-risk-management"
+updatedDate: "Mar 2015"
+pricing: "Advanced"
 heroImage: "/itemPreview.webp"
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae ultricies leo integer malesuada nunc vel risus commodo viverra. Adipiscing enim eu turpis egestas pretium. Euismod elementum nisi quis eleifend quam adipiscing. In hac habitasse platea dictumst vestibulum. Sagittis purus sit amet volutpat. Netus et malesuada fames ac turpis egestas. Eget magna fermentum iaculis eu non diam phasellus vestibulum lorem. Varius sit amet mattis vulputate enim. Habitasse platea dictumst quisque sagittis. Integer quis auctor elit sed vulputate mi. Dictumst quisque sagittis purus sit amet.
+*Quantitative Risk Management** by McNeil, Frey and Embrechts is the standard graduate-level reference for financial risk. It is mathematically rigorous without sacrificing applicability, making it the book that quantitative analysts actually use on the desk.
 
-Morbi tristique senectus et netus. Id semper risus in hendrerit gravida rutrum quisque non tellus. Habitasse platea dictumst quisque sagittis purus sit amet. Tellus molestie nunc non blandit massa. Cursus vitae congue mauris rhoncus. Accumsan tortor posuere ac ut. Fringilla urna porttitor rhoncus dolor. Elit ullamcorper dignissim cras tincidunt lobortis. In cursus turpis massa tincidunt dui ut ornare lectus. Integer feugiat scelerisque varius morbi enim nunc. Bibendum neque egestas congue quisque egestas diam. Cras ornare arcu dui vivamus arcu felis bibendum. Dignissim suspendisse in est ante in nibh mauris. Sed tempus urna et pharetra pharetra massa massa ultricies mi.
+## Core Topics
+
+- **Market Risk**: historical simulation, Monte Carlo and parametric VaR; Expected Shortfall and its superiority under Basel III.
+- **Extreme Value Theory**: the Peaks-Over-Threshold method and Generalised Pareto Distribution for tail risk estimation where normal distributions fail.
+- **Copulas and Dependence**: modelling joint distributions of financial risks beyond linear correlation — including Gaussian, Student-t and Archimedean copulas.
+- **Credit Risk**: structural models (Merton), reduced-form models, portfolio credit risk and CDO pricing.
+- **Operational Risk**: loss distribution approach and advanced measurement approaches.
+
+## Who Needs This
+
+Risk managers sitting for FRM or PRM exams, quants working on regulatory capital (Basel III/IV), and researchers in tail risk and systemic risk will find this indispensable.

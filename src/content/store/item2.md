@@ -1,15 +1,23 @@
 ---
-title: "Demo Item 2"
-description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-custom_link_label: "Custom Btn"
-custom_link: "https://customurl.com/"
-updatedDate: "Sep 11 2022"
-pricing: "$10"
-oldPricing: "$25.5"
-checkoutUrl: "https://checkouturl.com/"
+title: "Python for Finance – Yves Hilpisch"
+description: "A comprehensive guide to data analysis, algorithmic trading and derivatives pricing with Python. Covers NumPy, Pandas, Matplotlib, and financial modelling from scratch."
+custom_link_label: "View on O'Reilly"
+custom_link: "https://www.oreilly.com/library/view/python-for-finance/9781492024323/"
+updatedDate: "Sep 2018"
+pricing: "Recommended"
 heroImage: "/itemPreview.webp"
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae ultricies leo integer malesuada nunc vel risus commodo viverra. Adipiscing enim eu turpis egestas pretium. Euismod elementum nisi quis eleifend quam adipiscing. In hac habitasse platea dictumst vestibulum. Sagittis purus sit amet volutpat. Netus et malesuada fames ac turpis egestas. Eget magna fermentum iaculis eu non diam phasellus vestibulum lorem. Varius sit amet mattis vulputate enim. Habitasse platea dictumst quisque sagittis. Integer quis auctor elit sed vulputate mi. Dictumst quisque sagittis purus sit amet.
+Yves Hilpisch's *Python for Finance* is the go-to introduction for finance professionals making the transition to quantitative analysis with Python. It balances theory and code, covering everything from basic data wrangling to Monte Carlo simulation and Black-Scholes pricing.
 
-Morbi tristique senectus et netus. Id semper risus in hendrerit gravida rutrum quisque non tellus. Habitasse platea dictumst quisque sagittis purus sit amet. Tellus molestie nunc non blandit massa. Cursus vitae congue mauris rhoncus. Accumsan tortor posuere ac ut. Fringilla urna porttitor rhoncus dolor. Elit ullamcorper dignissim cras tincidunt lobortis. In cursus turpis massa tincidunt dui ut ornare lectus. Integer feugiat scelerisque varius morbi enim nunc. Bibendum neque egestas congue quisque egestas diam. Cras ornare arcu dui vivamus arcu felis bibendum. Dignissim suspendisse in est ante in nibh mauris. Sed tempus urna et pharetra pharetra massa massa ultricies mi.
+## Key Topics
+
+- **Financial data with Pandas**: loading price data, computing returns, rolling statistics and resampling.
+- **Derivatives pricing**: Monte Carlo simulation for European and American options, the Black-Scholes model, and the Greeks.
+- **Performance analysis**: Sharpe ratio, maximum drawdown, Value-at-Risk with historical simulation.
+- **Statistical analysis**: regression, cointegration tests, and time series modelling with `statsmodels`.
+- **Backtesting frameworks**: vectorised and event-driven backtesting patterns in Python.
+
+## Companion Code
+
+All examples include working Python notebooks available on GitHub. The book pairs well with the author's *AI in Finance* for a more ML-heavy follow-up.

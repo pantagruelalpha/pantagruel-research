@@ -11,53 +11,52 @@ const last_posts = posts.slice(0, 3);
 
 <BaseLayout sideBarActiveItemID="home">
   <div class="pb-12 mt-5">
-    <div class="text-xl py-1">Hey there 👋</div>
-    <div class="text-5xl font-bold">I'm Manuel Ernesto</div>
-    <div class="text-3xl py-3 font-bold">Software Engineer and Entrepreneur</div>
+    <div class="text-xl py-1">Welcome to 👋</div>
+    <div class="text-5xl font-bold">Pantagruel Research</div>
+    <div class="text-3xl py-3 font-bold">Quantitative Finance & Machine Learning</div>
     <div class="py-2">
       <text class="text-lg">
-        This is <b>Astrofy</b> a free and open-source template for your Personal Portfolio Website built with Astro and TailwindCSS.
-        Create in minutes a website with Blog, CV, Project Section, Store and RSS Feed. I hope you find
-        it useful!
+        A technical blog exploring the intersection of <b>machine learning</b>, <b>quantitative finance</b> and <b>data science</b>.
+        Deep dives into portfolio optimization, time series forecasting, risk modelling and algorithmic trading strategies.
       </text>
     </div>
     <div class="mt-8">
-      <a class="btn" href="https://twitter.com/manuelernestog" target="_blank"> Let's connect!</a>
-      <a href="https://github.com/manuelernestog/astrofy" target="_blank" class="btn btn-outline ml-5">
-        Get This template
+      <a class="btn" href="/blog/"> Read Articles</a>
+      <a href="/projects" class="btn btn-outline ml-5">
+        View Research
       </a>
     </div>
   </div>
 
   <div>
-    <div class="text-3xl w-full font-bold mb-2">My last projects {"</>"}</div>
+    <div class="text-3xl w-full font-bold mb-2">Featured Research Areas</div>
   </div>
 
   <HorizontalCard
-    title="Demo Project 1"
+    title="Time Series Forecasting with Deep Learning"
     img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-    badge="NEW"
+    desc="Applying transformer architectures and recurrent networks to predict financial time series, including equities, FX and volatility surfaces."
+    url="/blog/"
+    badge="ML"
   />
   <div class="divider my-0"></div>
   <HorizontalCard
-    title="Demo Project 2"
+    title="Portfolio Optimisation & Risk"
     img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
+    desc="Modern approaches to asset allocation: from mean-variance to reinforcement learning-based dynamic strategies and robust optimisation under uncertainty."
+    url="/blog/"
   />
   <div class="divider my-0"></div>
   <HorizontalCard
-    title="Demo Project 3"
+    title="Algorithmic Trading & Market Microstructure"
     img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-    badge="FOSS"
+    desc="Statistical arbitrage, execution algorithms, limit order book modelling and the application of NLP to alternative data sources."
+    url="/blog/"
+    badge="QUANT"
   />
 
   <div>
-    <div class="text-3xl w-full font-bold mb-5 mt-10">Latest from blog</div>
+    <div class="text-3xl w-full font-bold mb-5 mt-10">Latest Articles</div>
   </div>
 
   {
