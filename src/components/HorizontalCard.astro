@@ -1,15 +1,17 @@
 ---
 const { title, img, desc, url, badge, tags, target = "_blank" } = Astro.props;
 import { Image } from "astro:assets";
-const tag_url = url.split("/").slice(0, -1).join("/") + "/tag";
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const resolvedImg = img?.startsWith('/') ? base + img : img;
+const resolvedUrl = url?.startsWith('/') ? base + url : url;
+const raw_tag_url = url.split("/").slice(0, -1).join("/") + "/tag";
+const resolvedTagUrl = raw_tag_url.startsWith('/') ? base + raw_tag_url : raw_tag_url;
 ---
 
 <div
   class="rounded-lg bg-base-100 hover:shadow-xl transition ease-in-out hover:scale-[102%]"
 >
-  <a href={url} target={target}>
+  <a href={resolvedUrl} target={target}>
     <div class="hero-content flex-col md:flex-row">
       {
         img && (
@@ -33,7 +35,7 @@ const resolvedImg = img?.startsWith('/') ? base + img : img;
           {
             tags &&
               tags.map((tag) => (
-                <a href={`${tag_url}/${tag}`} class="badge badge-outline">
+                <a href={`${resolvedTagUrl}/${tag}`} class="badge badge-outline">
                   {tag}
                 </a>
               ))

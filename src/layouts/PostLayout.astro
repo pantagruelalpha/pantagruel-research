@@ -25,7 +25,7 @@ const resolvedHeroImage = heroImage?.startsWith('/') ? base + heroImage : heroIm
       {
         tags &&
           tags.map((tag) => (
-            <a href={`/blog/tag/${tag}`} class="badge badge-outline ml-2 no-underline">
+            <a href={`${base}/blog/tag/${tag}`} class="badge badge-outline ml-2 no-underline">
               {tag}
             </a>
           ))
