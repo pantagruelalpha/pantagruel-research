@@ -13,10 +13,13 @@ const {
   custom_link_label = "",
 } = Astro.props;
 import { Image } from "astro:assets";
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const resolvedImg = img?.startsWith('/') ? base + img : img;
+const resolvedUrl = url?.startsWith('/') ? base + url : url;
 ---
 
 <div class="rounded-lg bg-base-100 hover:shadow-xl transition ease-in-out hover:scale-[102%]">
-  <a href={url}>
+  <a href={resolvedUrl}>
     <div class="hero-content flex-col md:flex-row">
       {
         img && (
@@ -24,7 +27,7 @@ import { Image } from "astro:assets";
             width={750}
             height={422}
             format="webp"
-            src={img}
+            src={resolvedImg}
             alt={title}
             class="max-w-full md:max-w-[13rem] rounded-lg"
           />

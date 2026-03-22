@@ -10,68 +10,71 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <BaseLayout sideBarActiveItemID="home">
-  <div class="pb-12 mt-5">
-    <div class="text-xl py-1">Welcome to 👋</div>
-    <div class="text-5xl font-bold">Pantagruel Research</div>
-    <div class="text-3xl py-3 font-bold">Quantitative Finance & Machine Learning</div>
-    <div class="py-2">
-      <text class="text-lg">
-        A technical blog exploring the intersection of <b>machine learning</b>, <b>quantitative finance</b> and <b>data science</b>.
-        Deep dives into portfolio optimization, time series forecasting, risk modelling and algorithmic trading strategies.
-      </text>
+
+  <!-- Hero Section -->
+  <section class="relative mb-16">
+    <!-- Logo banner -->
+    <div class="w-full flex justify-center mt-2 mb-4">
+      <img
+        src={`${base}/pantagruel_logo.png`}
+        alt="Pantagruel Research"
+        class="w-full max-w-[700px] h-auto object-contain rounded-lg"
+      />
     </div>
-    <div class="mt-8">
-      <a class="btn" href={`${base}/blog/`}> Read Articles</a>
-      <a href={`${base}/projects`} class="btn btn-outline ml-5">
+
+    <!-- Decorative line -->
+    <div class="flex items-center gap-4 mb-8">
+      <div class="flex-grow h-px bg-base-300"></div>
+      <span class="text-xs uppercase tracking-[0.3em] text-base-content/40 font-semibold">Quantitative Finance & Machine Learning</span>
+      <div class="flex-grow h-px bg-base-300"></div>
+    </div>
+
+    <!-- Description -->
+    <p class="text-lg leading-relaxed text-base-content/70 max-w-2xl mx-auto text-center">
+      A technical blog exploring the intersection of <strong class="text-base-content">machine learning</strong>,
+      <strong class="text-base-content">quantitative finance</strong> and
+      <strong class="text-base-content">data science</strong>.
+      Deep dives into portfolio optimization, time series forecasting, risk modelling and algorithmic trading strategies.
+    </p>
+
+    <!-- CTA buttons -->
+    <div class="flex justify-center gap-4 mt-10">
+      <a class="btn btn-neutral btn-md px-8" href={`${base}/blog/`}>
+        Read Articles
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
+      <a href={`${base}/projects`} class="btn btn-outline btn-md px-8">
         View Research
       </a>
     </div>
-  </div>
+  </section>
 
-  <div>
-    <div class="text-3xl w-full font-bold mb-2">Featured Research Areas</div>
-  </div>
+  <!-- Latest Articles Section -->
+  <section>
+    <div class="flex items-center gap-4 mb-8">
+      <h2 class="text-2xl font-bold whitespace-nowrap">Latest Articles</h2>
+      <div class="flex-grow h-px bg-base-300"></div>
+      <a href={`${base}/blog/`} class="text-sm text-base-content/50 hover:text-base-content transition-colors whitespace-nowrap">
+        View all →
+      </a>
+    </div>
 
-  <HorizontalCard
-    title="Time Series Forecasting with Deep Learning"
-    img="/post_img.webp"
-    desc="Applying transformer architectures and recurrent networks to predict financial time series, including equities, FX and volatility surfaces."
-    url="/blog/"
-    badge="ML"
-  />
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="Portfolio Optimisation & Risk"
-    img="/post_img.webp"
-    desc="Modern approaches to asset allocation: from mean-variance to reinforcement learning-based dynamic strategies and robust optimisation under uncertainty."
-    url="/blog/"
-  />
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="Algorithmic Trading & Market Microstructure"
-    img="/post_img.webp"
-    desc="Statistical arbitrage, execution algorithms, limit order book modelling and the application of NLP to alternative data sources."
-    url="/blog/"
-    badge="QUANT"
-  />
+    <div class="space-y-4">
+      {
+        last_posts.map((post) => (
+          <HorizontalCard
+            title={post.data.title}
+            img={post.data.heroImage}
+            desc={post.data.description}
+            url={"/blog/" + createSlug(post.data.title, post.slug)}
+            target="_self"
+            badge={post.data.badge}
+          />
+        ))
+      }
+    </div>
+  </section>
 
-  <div>
-    <div class="text-3xl w-full font-bold mb-5 mt-10">Latest Articles</div>
-  </div>
-
-  {
-    last_posts.map((post) => (
-      <>
-        <HorizontalCard
-          title={post.data.title}
-          img={post.data.heroImage}
-          desc={post.data.description}
-          url={"/blog/" + createSlug(post.data.title, post.slug)}
-          target="_self"
-          badge={post.data.badge}
-        />
-        <div class="divider my-0" />
-      </>
-    ))
-  }
 </BaseLayout>

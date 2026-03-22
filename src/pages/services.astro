@@ -1,54 +1,57 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import HorizontalCard from "../components/HorizontalCard.astro";
+import { getCollection } from "astro:content";
+import createSlug from "../lib/createSlug";
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const allPosts = await getCollection("blog");
+
+// Build a map: tag -> posts[]
+const tagMap = new Map<string, typeof allPosts>();
+for (const post of allPosts) {
+  for (const tag of post.data.tags ?? []) {
+    if (!tagMap.has(tag)) tagMap.set(tag, []);
+    tagMap.get(tag)!.push(post);
+  }
+}
+
+const tags = [...tagMap.entries()].sort((a, b) => a[0].localeCompare(b[0]));
 ---
 
 <BaseLayout title="Topics" sideBarActiveItemID="services">
-  <div>
-    <div class="text-3xl w-full font-bold mb-5">Topics Covered</div>
+  <div class="mb-8">
+    <div class="text-3xl w-full font-bold mb-2">Topics</div>
+    <p class="text-base opacity-70">Articles organised by topic</p>
   </div>
 
-  <HorizontalCard
-    title="Machine Learning for Finance"
-    img="/post_img.webp"
-    desc="Supervised and unsupervised learning applied to financial data: gradient boosting, neural networks, transformers and their pitfalls in low signal-to-noise environments."
-    badge="CORE"
-    url="/blog/"
-  />
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="Time Series Analysis & Forecasting"
-    img="/post_img.webp"
-    desc="Classical econometric models (ARIMA, GARCH) and modern deep learning approaches (LSTM, N-BEATS, TFT) for financial time series with a focus on non-stationarity."
-    url="/blog/"
-  />
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="Portfolio Construction & Optimisation"
-    img="/post_img.webp"
-    desc="Mean-variance, Black-Litterman, Hierarchical Risk Parity and reinforcement learning approaches to dynamic asset allocation and risk budgeting."
-    badge="CORE"
-    url="/blog/"
-  />
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="Algorithmic Trading & Backtesting"
-    img="/post_img.webp"
-    desc="Strategy development, rigorous backtesting methodology, walk-forward testing, transaction cost modelling and avoiding the most common backtesting pitfalls."
-    url="/blog/"
-  />
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="Risk Modelling & Credit"
-    img="/post_img.webp"
-    desc="Value-at-Risk, Expected Shortfall, credit scoring with ML, IFRS 9 probability of default models and tail-risk hedging strategies."
-    url="/blog/"
-  />
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="NLP & Alternative Data"
-    img="/post_img.webp"
-    desc="Sentiment analysis of earnings calls, central bank communications and news flows using large language models and classical NLP pipelines as alpha signals."
-    url="/blog/"
-  />
+  {tags.map(([tag, posts]) => (
+    <div class="mb-10">
+      <a href={`${base}/blog/tag/${tag}/`} class="group">
+        <h2 class="text-2xl font-bold mb-4 capitalize hover:text-primary transition-colors">
+          #{tag}
+          <span class="ml-2 text-sm font-normal opacity-50">({posts.length} {posts.length === 1 ? 'article' : 'articles'})</span>
+        </h2>
+      </a>
+      <ul class="flex flex-col gap-2">
+        {posts
+          .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+          .map((post) => (
+            <li>
+              <a
+                href={`${base}/blog/` + createSlug(post.data.title, post.slug)}
+                class="flex items-center gap-2 hover:text-primary transition-colors"
+              >
+                <span class="opacity-40">→</span>
+                <span>{post.data.title}</span>
+                {post.data.badge && (
+                  <span class="badge badge-sm badge-secondary">{post.data.badge}</span>
+                )}
+              </a>
+            </li>
+          ))}
+      </ul>
+      <div class="divider mt-6"></div>
+    </div>
+  ))}
 </BaseLayout>
